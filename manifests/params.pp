@@ -9,7 +9,7 @@ class yum_cron::params {
       $service_hasrestart = true
 
       case $::operatingsystemmajrelease {
-        '7': {
+        '7','2': {
           $config_path      = '/etc/yum/yum-cron.conf'
           $debug_level      = '-2'
           $randomwait       = '360'
@@ -19,6 +19,7 @@ class yum_cron::params {
           $debug_level      = '0'
           $randomwait       = '60'
         }
+        
         default: {
           fail("Unsupported operatingsystemmajrelease: ${::operatingsystemmajrelease}, module ${module_name} only support 6 and 7")
         }
